@@ -16,6 +16,7 @@ import "./App.css";
 
 function App() {
    const [view, setView] = useState("numerico");
+   const [candidateView, setCandidateView] = useState("todos");
    return (
       <>
          <TotalVotesProvider>
@@ -31,13 +32,16 @@ function App() {
                               <Candidate4 />
                            </div>
                            <div className="votes-container">
-                              <Filters view={view} setView={setView} />
+                              <Filters
+                                 setView={setView}
+                                 setCandidateView={setCandidateView}
+                              />
 
                               <div className="total-container">
                                  <TotalVotes />
                                  <IndividualVotes
                                     view={view}
-                                    setView={setView}
+                                    candidateView={candidateView}
                                  />
                               </div>
                            </div>
