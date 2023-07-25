@@ -9,7 +9,6 @@ import "./App.css";
 
 function App() {
    const [view, setView] = useState("numbers");
-   const [candidateView, setCandidateView] = useState("all");
    return (
       <>
          <VotesProvider>
@@ -20,17 +19,11 @@ function App() {
                   ))}
                </div>
                <div className="votes-container">
-                  <Filters
-                     setView={setView}
-                     setCandidateView={setCandidateView}
-                  />
+                  <Filters setView={setView} />
 
                   <div className="total-container">
                      <TotalVotes />
-                     <IndividualVotes
-                        view={view}
-                        candidateView={candidateView}
-                     />
+                     <IndividualVotes view={view} />
                   </div>
                </div>
             </div>

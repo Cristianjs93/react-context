@@ -46,7 +46,7 @@
    margin-right: 0;
 }
 
-.total-votos {
+.total-votes {
    background-color: lightcoral;
    border: 1px solid black;
 }
@@ -66,4 +66,8 @@
    height: 521.5px;
    background-color: lightgreen;
    border: 1px solid black;
+}
+
+.off {
+   display: none;
 }

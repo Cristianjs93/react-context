@@ -5,7 +5,7 @@ const TotalVotes = () => {
    const store = useContext(VotesContext);
    const { votes } = store;
 
-   return <h2 className="total-votos">Total de votos: {votes.totalVotes}</h2>;
+   return <h2 className="total-votes">Total Votes: {votes.totalVotes}</h2>;
 };
 
 export default TotalVotes;

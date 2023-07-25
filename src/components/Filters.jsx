@@ -1,31 +1,43 @@
 import React from "react";
 
-const Filters = ({ setView, setCandidateView }) => {
+const Filters = ({ setView }) => {
    const handleView = () => {
       const selectView = document.getElementById("view");
       const viewValue = selectView.value;
       setView(viewValue);
 
-      const selectCandidate = document.getElementById("candidate");
-      const candidateValue = selectCandidate.value;
-      setCandidateView(candidateValue);
+      handleCandidateview();
+   };
+
+   const handleCandidateview = () => {
+      const allCandidatesVotes = document.querySelectorAll(".votes-info");
+
+      const selectWithCandidates = document.getElementById("select-candidate");
+      const selectedCandidate = selectWithCandidates.value;
+
+      allCandidatesVotes.forEach((item) => {
+         item.id == selectedCandidate && item.classList.remove("off");
+         item.id != selectedCandidate && item.classList.add("off");
+         selectedCandidate == "all" && item.classList.remove("off");
+      });
    };
 
    return (
       <div className="filters-box">
-         <select name="select-view" id="view" defaultValue="numbers">
-            <option value="numbers">Numerico</option>
-            <option value="percentage">Porcentaje</option>
-         </select>
-         <select name="select-candidate" id="candidate" defaultValue="all">
-            <option value="all">Todos</option>
-            <option value="candidate1">Candidato 1</option>
-            <option value="candidate2">Candidato 2</option>
-            <option value="candidate3">Candidato 3</option>
-            <option value="candidate4">Candidato 4</option>
+         <select id="view" defaultValue="numbers">
+            <option value="numbers">Numeric</option>
+            <option value="percentage">Percentaje</option>
          </select>
 
-         <button onClick={handleView}>Aplicar filtro</button>
+         <select id="select-candidate" defaultValue="all">
+            <option value="all">All</option>
+            <option value="candidate1">Candidate 1</option>
+            <option value="candidate2">Candidate 2</option>
+            <option value="candidate3">Candidate 3</option>
+            <option value="candidate4">Candidate 4</option>
+         </select>
+
+         <button onClick={handleView}>Apply Filter</button>
       </div>
    );
 };
