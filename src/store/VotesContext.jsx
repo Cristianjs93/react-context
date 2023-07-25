@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { useState, createContext } from "react";
 
 export const VotesContext = createContext();
 
@@ -7,12 +7,18 @@ export const VotesProvider = ({ children }) => {
       candidate1: 0,
       candidate2: 0,
       candidate3: 0,
-      candidate4: 0
+      candidate4: 0,
+      totalVotes: 0
    });
 
    const handleVotes = (name) => {
-      setVotes({ ...votes, [name]: votes[name] + 1 });
+      setVotes({
+         ...votes,
+         [name]: votes[name] + 1,
+         totalVotes: votes.totalVotes + 1
+      });
    };
+
    return (
       <VotesContext.Provider
          value={{
@@ -23,4 +29,3 @@ export const VotesProvider = ({ children }) => {
       </VotesContext.Provider>
    );
 };
-<button onClick={() => store.handleVotes("candidate4")}></button>;

@@ -1,91 +1,83 @@
 import React, { useContext } from "react";
-import { Candidate1Context } from "../store/Candidate1Context";
-import { Candidate2Context } from "../store/Candidate2Context";
-import { Candidate3Context } from "../store/Candidate3Context";
-import { Candidate4Context } from "../store/Candidate4Context";
-import { TotalVotesContext } from "../store/TotalVotesContext";
+import { VotesContext } from "../store/VotesContext";
 
 const IndividualVotes = ({ view, candidateView }) => {
-   const store1 = useContext(Candidate1Context);
-   const store2 = useContext(Candidate2Context);
-   const store3 = useContext(Candidate3Context);
-   const store4 = useContext(Candidate4Context);
-   const votesStore = useContext(TotalVotesContext);
+   const store = useContext(VotesContext);
+   const { votes } = store;
 
-   console.log(candidateView);
-   if (view == "numerico")
-      return candidateView == "todos" ? (
+   // const handleClick = (event) => {
+   //    const currentElement = event.target;
+
+   //    const selectedElement = document.querySelector(
+   //       ".buttons-filters__box__button--selected"
+   //    );
+
+   //    if (currentElement !== selectedElement) {
+   //       selectedElement &&
+   //          selectedElement.classList.remove(
+   //             "buttons-filters__box__button--selected"
+   //          );
+
+   //       currentElement.classList.toggle(
+   //          "buttons-filters__box__button--selected"
+   //       );
+   //    }
+   // };
+
+   if (view == "numbers")
+      return candidateView == "all" ? (
          <div className="individuals">
-            <h2> candidato 1: {store1.candidate1Votes} votos</h2>
-            <h2> candidato 2: {store2.candidate2Votes} votos</h2>
-            <h2> candidato 3: {store3.candidate3Votes} votos</h2>
-            <h2> candidato 4: {store4.candidate4Votes} votos</h2>
+            <h2> candidato 1: {votes.candidate1} votos</h2>
+            <h2> candidato 2: {votes.candidate2} votos</h2>
+            <h2> candidato 3: {votes.candidate3} votos</h2>
+            <h2 style={{ display: "none" }}>
+               {" "}
+               candidato 4: {votes.candidate4} votos
+            </h2>
          </div>
       ) : candidateView == "candidate1" ? (
          <div className="individuals">
-            <h2> candidato 1: {store1.candidate1Votes} votos</h2>
+            <h2> candidato 1: {votes.candidate1} votos</h2>
          </div>
       ) : candidateView == "candidate2" ? (
          <div className="individuals">
-            <h2> candidato 2: {store2.candidate2Votes} votos</h2>
+            <h2> candidato 2: {votes.candidate2} votos</h2>
          </div>
       ) : candidateView == "candidate3" ? (
          <div className="individuals">
-            <h2> candidato 3: {store3.candidate3Votes} votos</h2>
+            <h2> candidato 3: {votes.candidate3} votos</h2>
          </div>
       ) : candidateView == "candidate4" ? (
          <div className="individuals">
-            <h2> candidato 4: {store4.candidate4Votes} votos</h2>
+            <h2> candidato 4: {votes.candidate4} votos</h2>
          </div>
       ) : null;
 
-   if (view == "porcentaje")
-      return candidateView == "todos" ? (
+   if (view == "percentage")
+      return candidateView == "all" ? (
          <div className="individuals">
-            <h2>
-               candidato 1:{" "}
-               {(store1.candidate1Votes / votesStore.totalVotes) * 100}%
-            </h2>
-            <h2>
-               candidato 2:{" "}
-               {(store2.candidate2Votes / votesStore.totalVotes) * 100}%
-            </h2>
-            <h2>
-               candidato 3:{" "}
-               {(store3.candidate3Votes / votesStore.totalVotes) * 100}%
-            </h2>
-            <h2>
-               candidato 4:{" "}
-               {(store4.candidate4Votes / votesStore.totalVotes) * 100}%
-            </h2>
+            <h2>candidato 1: {(votes.candidate1 / votes.totalVotes) * 100}%</h2>
+            <h2>candidato 2: {(votes.candidate2 / votes.totalVotes) * 100}%</h2>
+            <h2>candidato 3: {(votes.candidate3 / votes.totalVotes) * 100}%</h2>
+            <h2>candidato 4: {(votes.candidate4 / votes.totalVotes) * 100}%</h2>
          </div>
       ) : candidateView == "candidate1" ? (
          <div className="individuals">
-            <h2>
-               candidato 1:{" "}
-               {(store1.candidate1Votes / votesStore.totalVotes) * 100}%
-            </h2>
+            <h2>candidato 1: {(votes.candidate1 / votes.totalVotes) * 100}%</h2>
          </div>
       ) : candidateView == "candidate2" ? (
          <div className="individuals">
-            <h2>
-               candidato 2:{" "}
-               {(store2.candidate2Votes / votesStore.totalVotes) * 100}%
-            </h2>
+            <h2>candidato 2: {(votes.candidate2 / votes.totalVotes) * 100}%</h2>
          </div>
       ) : candidateView == "candidate3" ? (
          <div className="individuals">
-            <h2>
-               candidato 3:{" "}
-               {(store3.candidate3Votes / votesStore.totalVotes) * 100}%
-            </h2>
+            <h2>candidato 3: {(votes.candidate3 / votes.totalVotes) * 100}%</h2>
          </div>
       ) : (
          candidateView == "candidate4" && (
             <div className="individuals">
                <h2>
-                  candidato 4:{" "}
-                  {(store4.candidate4Votes / votesStore.totalVotes) * 100}%
+                  candidato 4: {(votes.candidate4 / votes.totalVotes) * 100}%
                </h2>
             </div>
          )
